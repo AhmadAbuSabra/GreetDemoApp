@@ -1,11 +1,11 @@
 workflows:
   ios-debug-build:
-    name: iOS GreetDemoApp No Signing
+    name: iOS GreetDemoApp (No Signing)
     environment:
       vars:
         XCODE_WORKSPACE: "GreetDemoApp.xcworkspace"
         XCODE_SCHEME: "GreetDemoApp"
-      xcode: 14.3
+      xcode: 14.2 # ✅ Change to a supported version
     scripts:
       - name: Install CocoaPods
         script: |
@@ -17,3 +17,5 @@ workflows:
             -workspace "$XCODE_WORKSPACE" \
             -scheme "$XCODE_SCHEME" \
             -destination 'platform=iOS Simulator,name=iPhone 14'
+    artifacts:
+      - build/ios/**/*.app
