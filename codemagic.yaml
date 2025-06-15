@@ -1,0 +1,22 @@
+workflows:
+  ios-workflow:
+    name: iOS GreetDemoApp Workflow
+    max_build_duration: 20
+    environment:
+      vars:
+        XCODE_WORKSPACE: "GreetDemoApp.xcworkspace"
+        XCODE_SCHEME: "GreetDemoApp"
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.yourcompany.greetdemoapp
+    scripts:
+      - name: Install CocoaPods
+        script: |
+          cd ios
+          pod install
+    artifacts:
+      - build/ios/ipa/*.ipa
+    publishing:
+      email:
+        recipients:
+          - your.email@example.com
